@@ -1,6 +1,9 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { Context } from "../store/appContext.js";
+import { Consumer } from "../store/appContext.js";
 
 class ContactCard extends React.Component {
 	constructor() {
@@ -26,9 +29,16 @@ class ContactCard extends React.Component {
 							<button className="btn">
 								<i className="fas fa-pencil-alt mr-3" />
 							</button>
-							<button className="btn" onClick={() => this.props.onDelete()}>
-								<i className="fas fa-trash-alt" />
-							</button>
+
+							<Consumer>
+								{({ store, actions }) => {
+									return (
+										<button className="btn" onClick={() => this.props.onDelete()}>
+											<i className="fas fa-trash-alt" />
+										</button>
+									);
+								}}
+							</Consumer>
 						</div>
 						<label className="name lead">{this.props.name}</label>
 						<br />

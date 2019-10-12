@@ -12,6 +12,12 @@ const getState = ({ getStore, setStore }) => {
 			]
 		},
 		actions: {
+			deleteContact: index => {
+				const store = getStore();
+
+				var data = store.contacts[index].id;
+			}
+
 			//(Arrow) Functions that update the Store
 			// Remember to use the scope: scope.state.store & scope.setState()
 		}

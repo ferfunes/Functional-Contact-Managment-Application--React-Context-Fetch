@@ -26,7 +26,6 @@ export default class Contacts extends React.Component {
 						<ul className="list-group pull-down" id="contact-list">
 							<Consumer>
 								{({ store, actions }) => {
-									console.log(store);
 									return store.contacts.map((item, index) => {
 										return (
 											<ContactCard
