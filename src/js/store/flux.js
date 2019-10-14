@@ -29,7 +29,8 @@ const getState = ({ getStore, setStore }) => {
 							full_name: name,
 							email: email,
 							phone: phone,
-							address: address
+							address: address,
+							id: store.contacts.length + 3
 						}
 					])
 				});

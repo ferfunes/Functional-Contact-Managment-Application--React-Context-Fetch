@@ -30,9 +30,11 @@ class ContactCard extends React.Component {
 
 								<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 									<div className=" float-right">
-										<button className="btn">
-											<i className="fas fa-pencil-alt mr-3" />
-										</button>
+										<Link to={"/edit/" + this.props.id}>
+											<button className="btn">
+												<i className="fas fa-pencil-alt mr-3" />
+											</button>
+										</Link>
 
 										<button className="btn" onClick={() => this.props.onDelete()}>
 											<i className="fas fa-trash-alt" />
@@ -78,7 +80,8 @@ ContactCard.propTypes = {
 	name: PropTypes.string,
 	address: PropTypes.string,
 	phone: PropTypes.string,
-	email: PropTypes.string
+	email: PropTypes.string,
+	id: PropTypes.integer
 };
 
 /**
