@@ -3,22 +3,40 @@ const getState = ({ getStore, setStore }) => {
 		store: {
 			contacts: [
 				{
-					id: "23",
+					id: 1,
 					full_name: "Fernando Funez",
-					email: "tom@gmail.comm",
+					email: "fercho@gmail.comm",
+					phone: "7864445566",
+					address: "47568 NW 34ST, 33434 FL, USA"
+				},
+
+				{
+					id: 2,
+					full_name: "Sharon Elman",
+					email: "shuspaluspa@gmail.comm",
 					phone: "7864445566",
 					address: "47568 NW 34ST, 33434 FL, USA"
 				}
 			]
 		},
+
 		actions: {
-			deleteContact: index => {
-				const store = getStore();
-
-				var data = store.contacts[index].id;
+			addContact: (name, address, phone, email) => {
+				let store = getStore();
+				setStore({
+					contacts: store.contacts.concat([
+						{
+							full_name: name,
+							email: email,
+							phone: phone,
+							address: address
+						}
+					])
+				});
+			},
+			deleteContact: id => {
+				console.log(id);
 			}
-
-			//(Arrow) Functions that update the Store
 			// Remember to use the scope: scope.state.store & scope.setState()
 		}
 	};
