@@ -19,7 +19,7 @@ export class Layout extends React.Component {
 							<Route exact path="/" component={Contacts} />
 							<Route exact path="/contacts" component={Contacts} />
 							<Route exact path="/add" component={AddContact} />
-							<Route exact path="/edit/:bubu" component={EditContact} />
+							<Route exact path="/edit/:bubu/:name" component={EditContact} />
 							<Route render={() => <h1 className="notfound">Not found!</h1>} />
 						</Switch>
 					</div>

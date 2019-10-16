@@ -35,8 +35,27 @@ const getState = ({ getStore, setStore }) => {
 					])
 				});
 			},
+			editContact: (name, address, phone, email, id) => {
+				let store = getStore();
+				let contactIndex = store.contacts.findIndex(item => item.id == id);
+				console.log("index", contactIndex);
+				setStore({
+					contacts: store.contacts[contactIndex]([
+						{
+							full_name: name,
+							email: email,
+							phone: phone,
+							address: address
+						}
+					])
+				});
+			},
 			deleteContact: id => {
-				console.log(id);
+				let store = getStore();
+				let filteredItems = store.contacts.filter((contact, index) => contact.id !== id);
+				console.log(filteredItems);
+				//console.log(key);
+				setStore({ contacts: filteredItems });
 			}
 			// Remember to use the scope: scope.state.store & scope.setState()
 		}

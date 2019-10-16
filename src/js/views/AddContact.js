@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Consumer } from "../store/appContext";
+
 export default class AddContact extends React.Component {
 	constructor() {
 		super();
