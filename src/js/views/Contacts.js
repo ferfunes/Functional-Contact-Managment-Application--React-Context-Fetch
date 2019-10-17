@@ -30,6 +30,7 @@ export default class Contacts extends React.Component {
 										return (
 											<ContactCard
 												id={item.id}
+												position={index}
 												key={index}
 												name={item.full_name}
 												email={item.email}

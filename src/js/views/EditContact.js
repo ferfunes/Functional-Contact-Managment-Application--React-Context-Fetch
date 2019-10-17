@@ -64,20 +64,28 @@ export default class EditContact extends React.Component {
 											placeholder="Enter address"
 										/>
 									</div>
-									<button
-										onClick={() =>
-											actions.editContact(
-												this.state.name,
-												this.state.address,
-												this.state.phone,
-												this.state.email,
-												contact.id
-											)
-										}
-										type="button"
-										className="btn btn-primary form-control">
-										save
-									</button>
+									<Link to="/">
+										<button
+											onClick={() =>
+												actions.editContact(
+													this.state.name,
+													this.state.address,
+													this.state.phone,
+													this.state.email,
+													contact.id
+												)
+											}
+											type="button"
+											className="btn btn-primary form-control"
+											disabled={
+												!this.state.name &&
+												!this.state.address &&
+												!this.state.phone &&
+												!this.state.email
+											}>
+											save
+										</button>
+									</Link>
 									<Link className="mt-3 w-100 text-center" to="/">
 										or get back to contacts
 									</Link>

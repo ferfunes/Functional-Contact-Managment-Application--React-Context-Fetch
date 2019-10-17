@@ -53,14 +53,7 @@ class Modal extends React.Component {
 											""
 										)}
 
-										<button
-											onClick={() => {
-												actions.deleteContact(actions.items);
-											}}
-											type="button"
-											className="btn btn-secondary"
-											d
-											ata-dismiss="modal">
+										<button type="button" className="btn btn-secondary" data-dismiss="modal">
 											Do it!
 										</button>
 									</div>

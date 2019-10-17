@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import { Consumer } from "../store/appContext.js";
 
 class ContactCard extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			// initialize your state
 		};
@@ -36,7 +36,11 @@ class ContactCard extends React.Component {
 											</button>
 										</Link>
 
-										<button className="btn" onClick={() => this.props.onDelete()}>
+										<button
+											className="btn"
+											onClick={() => {
+												actions.deleteContact(this.props.position);
+											}}>
 											<i className="fas fa-trash-alt" />
 										</button>
 									</div>
@@ -81,7 +85,8 @@ ContactCard.propTypes = {
 	address: PropTypes.string,
 	phone: PropTypes.string,
 	email: PropTypes.string,
-	id: PropTypes.integer
+	id: PropTypes.number,
+	position: PropTypes.number
 };
 
 /**

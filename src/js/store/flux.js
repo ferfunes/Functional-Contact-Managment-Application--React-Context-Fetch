@@ -51,8 +51,10 @@ const getState = ({ getStore, setStore }) => {
 				});
 			},
 			deleteContact: id => {
-				let store = getStore();
-				let filteredItems = store.contacts.filter((contact, index) => contact.id !== id);
+				const store = getStore();
+				let filteredItems = store.contacts.filter((elem, index) => {
+					return id !== index;
+				});
 				console.log(filteredItems);
 				//console.log(key);
 				setStore({ contacts: filteredItems });
