@@ -39,16 +39,19 @@ const getState = ({ getStore, setStore }) => {
 				let store = getStore();
 				let contactIndex = store.contacts.findIndex(item => item.id == id);
 				console.log("index", contactIndex);
-				setStore({
-					contacts: store.contacts[contactIndex]([
-						{
-							full_name: name,
-							email: email,
-							phone: phone,
-							address: address
-						}
-					])
-				});
+
+				let updated_store = store.contacts
+					.slice(0, contactIndex)
+					.concat({
+						...store.contacts[contactIndex],
+						full_name: name,
+						email: email,
+						address: address,
+						phone: phone
+					})
+					.concat(store.contacts.slice(contactIndex + 1));
+				console.log("Upd", updated_store);
+				setStore({ contacts: updated_store });
 			},
 			deleteContact: id => {
 				const store = getStore();
