@@ -37,6 +37,9 @@ const getState = ({ getStore, setStore }) => {
 			},
 			editContact: (name, address, phone, email, id) => {
 				let store = getStore();
+				console.log("old", store.contacts);
+				console.log("name:", name);
+
 				let contactIndex = store.contacts.findIndex(item => item.id == id);
 				console.log("index", contactIndex);
 
