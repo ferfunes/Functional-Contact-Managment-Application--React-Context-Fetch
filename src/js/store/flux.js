@@ -34,6 +34,17 @@ const getState = ({ getStore, setStore }) => {
 						}
 					])
 				});
+				fetch("https://assets.breatheco.de/apis/fake/contact", {
+					method: "post",
+					headers: { "Content-Type": "aplication/json" },
+					body: JSON.stringify({
+						full_name: name,
+						agenda_slug: "my_agenda_slug",
+						email: email,
+						phone: phone,
+						address: address
+					})
+				});
 			},
 			editContact: (name, address, phone, email, id) => {
 				let store = getStore();
