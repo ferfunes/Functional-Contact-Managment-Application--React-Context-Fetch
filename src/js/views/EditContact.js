@@ -25,81 +25,82 @@ export default class EditContact extends React.Component {
 		return (
 			<Consumer>
 				{({ store, actions }) => {
-					let contact = store.contacts.find(item => item.id == this.props.match.params.bubu);
+					let contact = store.agenda.find(item => item.id == this.props.match.params.bubu);
 					console.log("$$$", contact);
-					return (
-						<div className="container">
-							<div>
-								<h1 className="text-center mt-5">Edit Contact</h1>
-								<form>
-									<div className="form-group">
-										<label>Full Name</label>
-										<input
-											defaultValue={contact.full_name}
-											type="text"
-											ref={this.inputName}
-											className="form-control"
-											placeholder="Full Name"
-										/>
-									</div>
-									<div className="form-group">
-										<label>Email</label>
-										<input
-											defaultValue={contact.email}
-											type="email"
-											ref={this.inputEmail}
-											className="form-control"
-											placeholder="Enter email"
-										/>
-									</div>
-									<div className="form-group">
-										<label>Phone</label>
-										<input
-											defaultValue={contact.phone}
-											type="phone"
-											ref={this.inputPhone}
-											className="form-control"
-											placeholder="Enter phone"
-										/>
-									</div>
-									<div className="form-group">
-										<label>Address</label>
-										<input
-											defaultValue={contact.address}
-											type="text"
-											ref={this.inputAdress}
-											className="form-control"
-											placeholder="Enter address"
-										/>
-									</div>
-									<Link to="/">
-										<button
-											onClick={e => {
-												const edit = this.editValue(e, contact.id);
-												if (edit) {
-													console.log(edit);
-													actions.editContact(
-														edit.name,
-														edit.address,
-														edit.phone,
-														edit.email,
-														edit.id
-													);
-													this.props.history.push("/");
-												}
-											}}
-											type="button"
-											className="btn btn-primary form-control">
-											save
-										</button>
-									</Link>
-									<Link className="mt-3 w-100 text-center" to="/">
-										or get back to contacts
-									</Link>
-								</form>
+					console.log("props", this.props.match.params.bubu);
+					if (contact) {
+						return (
+							<div className="container">
+								<div>
+									<h1 className="text-center mt-5">Edit Contact</h1>
+									<form>
+										<div className="form-group">
+											<label>Full Name</label>
+											<input
+												defaultValue={contact.full_name}
+												type="text"
+												ref={this.inputName}
+												className="form-control"
+												placeholder="Full Name"
+											/>
+										</div>
+										<div className="form-group">
+											<label>Email</label>
+											<input
+												defaultValue={contact.email}
+												type="email"
+												ref={this.inputEmail}
+												className="form-control"
+												placeholder="Enter email"
+											/>
+										</div>
+										<div className="form-group">
+											<label>Phone</label>
+											<input
+												defaultValue={contact.phone}
+												type="phone"
+												ref={this.inputPhone}
+												className="form-control"
+												placeholder="Enter phone"
+											/>
+										</div>
+										<div className="form-group">
+											<label>Address</label>
+											<input
+												defaultValue={contact.address}
+												type="text"
+												ref={this.inputAdress}
+												className="form-control"
+												placeholder="Enter address"
+											/>
+										</div>
+										<Link to="/">
+											<button
+												onClick={e => {
+													const edit = this.editValue(e, contact.id);
+													if (edit) {
+														actions.editContact(
+															edit.name,
+															edit.address,
+															edit.phone,
+															edit.email,
+															edit.id
+														);
+													}
+												}}
+												type="button"
+												className="btn btn-primary form-control">
+												save
+											</button>
+										</Link>
+										<Link className="mt-3 w-100 text-center" to="/">
+											or get back to contacts
+										</Link>
+									</form>
+								</div>
 							</div>
-						</div>
-					);
+						);
+					}
 				}}
 			</Consumer>
 		);
@@ -107,5 +108,5 @@ export default class EditContact extends React.Component {
 }
 EditContact.propTypes = {
 	match: PropTypes.object,
-	history: PropTypes.string
+	history: PropTypes.object
 };

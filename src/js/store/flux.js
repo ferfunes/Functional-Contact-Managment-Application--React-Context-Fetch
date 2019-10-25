@@ -1,6 +1,7 @@
 const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
+			contact: [],
 			contacts: [
 				{
 					id: 1,
@@ -23,49 +24,75 @@ const getState = ({ getStore, setStore }) => {
 		actions: {
 			addContact: (name, address, phone, email) => {
 				let store = getStore();
-				setStore({
-					contacts: store.contacts.concat([
-						{
-							full_name: name,
-							email: email,
-							phone: phone,
-							address: address,
-							id: store.contacts.length + 3
-						}
-					])
-				});
-				fetch("https://assets.breatheco.de/apis/fake/contact", {
+				console.log(name, address, phone, email);
+				// setStore({
+				//	contacts: store.contacts.concat([
+				//		{
+				//			full_name: name,
+				//			email: email,
+				//			phone: phone,
+				//			address: address,
+				//			id: store.contacts.length + 3
+				//		}
+				//	])
+				//});
+				fetch("https://assets.breatheco.de/apis/fake/contact/", {
 					method: "post",
 					headers: { "Content-Type": "aplication/json" },
 					body: JSON.stringify({
 						full_name: name,
-						agenda_slug: "my_agenda_slug",
+						agenda_slug: "Fernando_agenda",
 						email: email,
 						phone: phone,
 						address: address
 					})
+				}).then(() => {
+					fetch("https://assets.breatheco.de/apis/fake/contact/agenda/Fernando_agenda")
+						.then(response => response.json())
+						.then(data => {
+							setStore({ agenda: data });
+						});
 				});
 			},
 			editContact: (name, address, phone, email, id) => {
+				console.log("$$$$", name, address, phone, email, id);
 				let store = getStore();
-				console.log("old", store.contacts);
-				console.log("name:", name);
-
-				let contactIndex = store.contacts.findIndex(item => item.id == id);
-				console.log("index", contactIndex);
-
-				let updated_store = store.contacts
-					.slice(0, contactIndex)
-					.concat({
-						...store.contacts[contactIndex],
+				fetch("https://assets.breatheco.de/apis/fake/contact/417", {
+					method: "PUT",
+					headers: { "Content-Type": "aplication/json" },
+					body: JSON.stringify({
 						full_name: name,
+						agenda_slug: "Fernando_agenda",
 						email: email,
-						address: address,
-						phone: phone
+						phone: phone,
+						address: address
 					})
-					.concat(store.contacts.slice(contactIndex + 1));
-				console.log("Upd", updated_store);
-				setStore({ contacts: updated_store });
+				}).then(() => {
+					fetch("https://assets.breatheco.de/apis/fake/contact/agenda/Fernando_agenda")
+						.then(response => response.json())
+						.then(data => {
+							setStore({ agenda: data });
+						});
+				});
+
+				// console.log("old", store.contacts);
+				// console.log("name:", name);
+
+				// let contactIndex = store.contacts.findIndex(item => item.id == id);
+				// console.log("index", contactIndex);
+
+				// let updated_store = store.contacts
+				// 	.slice(0, contactIndex)
+				// 	.concat({
+				// 		...store.contacts[contactIndex],
+				// 		full_name: name,
+				// 		email: email,
+				// 		address: address,
+				// 		phone: phone
+				// 	})
+				// 	.concat(store.contacts.slice(contactIndex + 1));
+				// console.log("Upd", updated_store);
+				// setStore({ contacts: updated_store });
 			},
 			deleteContact: id => {
 				const store = getStore();

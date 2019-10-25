@@ -26,20 +26,23 @@ export default class Contacts extends React.Component {
 						<ul className="list-group pull-down" id="contact-list">
 							<Consumer>
 								{({ store, actions }) => {
-									return store.contacts.map((item, index) => {
-										return (
-											<ContactCard
-												id={item.id}
-												position={index}
-												key={index}
-												name={item.full_name}
-												email={item.email}
-												phone={item.phone}
-												address={item.address}
-												onDelete={() => this.setState({ showModal: true })}
-											/>
-										);
-									});
+									return (
+										store.agenda &&
+										store.agenda.map((item, index) => {
+											return (
+												<ContactCard
+													id={item.id}
+													position={index}
+													key={index}
+													name={item.full_name}
+													email={item.email}
+													phone={item.phone}
+													address={item.address}
+													onDelete={() => this.setState({ showModal: true })}
+												/>
+											);
+										})
+									);
 								}}
 							</Consumer>
 						</ul>
