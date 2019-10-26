@@ -68,42 +68,44 @@ const getState = ({ getStore, setStore }) => {
 			editContact: (name, address, phone, email, id) => {
 				console.log("$$$$", name, address, phone, email, id);
 				let store = getStore();
-				fetch("https://assets.breatheco.de/apis/fake/contact/417", {
-					method: "PUT",
-					headers: { "Content-Type": "app lication/json" },
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
+					method: "put",
+					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({
-						full_name: name,
 						agenda_slug: "Fernando_agenda",
+						full_name: name,
 						email: email,
 						phone: phone,
 						address: address
 					})
-				}).then(() => {
-					fetch("https://assets.breatheco.de/apis/fake/contact/agenda/Fernando_agenda")
-						.then(response => response.json())
-						.then(data => {
-							setStore({ agenda: data });
-						});
-				});
+				})
+					.then(response => console.log(response.json()))
+					.then(() => {
+						fetch("https://assets.breatheco.de/apis/fake/contact/agenda/Fernando_agenda")
+							.then(response => response.json())
+							.then(data => {
+								console.log(data);
+								setStore({ agenda: data });
+							});
+					});
 
-				// console.log("old", store.contacts);
-				// console.log("name:", name);
+				//console.log("old", store.contacts);
+				//console.log("name:", name);
 
-				// let contactIndex = store.contacts.findIndex(item => item.id == id);
-				// console.log("index", contactIndex);
-
-				// let updated_store = store.contacts
-				// 	.slice(0, contactIndex)
-				// 	.concat({
-				// 		...store.contacts[contactIndex],
-				// 		full_name: name,
-				// 		email: email,
-				// 		address: address,
-				// 		phone: phone
-				// 	})
-				// 	.concat(store.contacts.slice(contactIndex + 1));
-				// console.log("Upd", updated_store);
-				// setStore({ contacts: updated_store });
+				//let contactIndex = store.contacts.findIndex(item => item.id == id);
+				//console.log("index", contactIndex);
+				//let updated_store = store.contacts
+				//	.slice(0, contactIndex)
+				//	.concat({
+				//		...store.contacts[contactIndex],
+				//		full_name: name,
+				//		email: email,
+				//		address: address,
+				//		phone: phone
+				//	})
+				//	.concat(store.contacts.slice(contactIndex + 1));
+				//console.log("Upd", updated_store);
+				//setStore({ contacts: updated_store });
 			},
 			deleteContact: id => {
 				console.log(id);

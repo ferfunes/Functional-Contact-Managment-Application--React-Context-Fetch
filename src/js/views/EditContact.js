@@ -93,6 +93,7 @@ export default class EditContact extends React.Component {
 												save
 											</button>
 										</Link>
+
 										<Link className="mt-3 w-100 text-center" to="/">
 											or get back to contacts
 										</Link>
