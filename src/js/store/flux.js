@@ -65,7 +65,7 @@ const getState = ({ getStore, setStore }) => {
 							});
 					});
 			},
-			editContact: (name, address, phone, email, id) => {
+			editContact: (name, address, phone, email, id, history) => {
 				console.log("$$$$", name, address, phone, email, id);
 				let store = getStore();
 				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
@@ -87,7 +87,8 @@ const getState = ({ getStore, setStore }) => {
 								console.log(data);
 								setStore({ agenda: data });
 							});
-					});
+					})
+					.then(() => history.push("/"));
 
 				//console.log("old", store.contacts);
 				//console.log("name:", name);

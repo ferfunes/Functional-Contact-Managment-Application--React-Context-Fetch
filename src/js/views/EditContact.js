@@ -74,25 +74,25 @@ export default class EditContact extends React.Component {
 												placeholder="Enter address"
 											/>
 										</div>
-										<Link to="/">
-											<button
-												onClick={e => {
-													const edit = this.editValue(e, contact.id);
-													if (edit) {
-														actions.editContact(
-															edit.name,
-															edit.address,
-															edit.phone,
-															edit.email,
-															edit.id
-														);
-													}
-												}}
-												type="button"
-												className="btn btn-primary form-control">
-												save
-											</button>
-										</Link>
+
+										<button
+											onClick={e => {
+												const edit = this.editValue(e, contact.id);
+												if (edit) {
+													actions.editContact(
+														edit.name,
+														edit.address,
+														edit.phone,
+														edit.email,
+														edit.id,
+														this.props.history
+													);
+												}
+											}}
+											type="button"
+											className="btn btn-primary form-control">
+											save
+										</button>
 
 										<Link className="mt-3 w-100 text-center" to="/">
 											or get back to contacts
